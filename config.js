@@ -219,7 +219,7 @@ var config = {
         {
             id: 'finance-breakdown',
             title: 'Finance Breakdown',
-            description: 'How do savings by prisons compare with the cost to house and employee decarcerated people for a year?\n To calculate this, we estimate hotel costs with a 50% hotel employee wage boost, add the cost of paying decarcerated people minimum wage for a year, and subtract the average inmate cost.\n In many states, such as California, prisons actually make a large amount of money by implementing our plan.',
+            description: 'How do savings by prisons compare with the cost to house and employee decarcerated people for a year?\n To calculate this, assuming we decarcerate 10% of prisoners, we estimate hotel costs with a 50% hotel employee wage boost, add the cost of paying decarcerated people minimum wage for a year, and subtract the average inmate cost.\n In many states, such as California, prisons actually make a large amount of money by implementing our plan.',
             location: {
                 center: [-95.81199, 38.84726],
                 zoom: 3.78,
@@ -242,7 +242,7 @@ var config = {
         {
             id: 'conclusion',
             title: 'Conclusion',
-            description: 'conclusion',
+            description: 'We must decarcerate prisons in order to protect an incredibly large and vulnerable population. However, we must have a reintegration plan that protects this group in our unprecedented times. We have found that providing hotel housing and jobs serves this purpose as well as protecting industries damaged by the pandemic - and, in many cases, reduces costs for prisons.',
             location: {
                 center: [-95.81199, 38.84726],
                 zoom: 3.78,
