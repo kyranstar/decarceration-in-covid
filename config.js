@@ -1,5 +1,5 @@
 var config = {
-    style: 'mapbox://styles/recfreq/ckdmmdb771fmm1jmvpv0dtkn0',
+    style: 'mapbox://styles/recfreq/ckdnegwow11r11ilkxkp6vwtt',
     accessToken: 'pk.eyJ1IjoicmVjZnJlcSIsImEiOiJjamtoNXhvZTEwM3NwM3ZxcWszYTN3ZWl4In0.PVWzx-AiSNlZEYR1YZPrVw',
     showMarkers: false,
     theme: 'light',
@@ -7,13 +7,12 @@ var config = {
     title: 'Decarceration During COVID - A Novel Prisoner Reintegration Plan',
     subtitle: 'A Project for HackZ',
     byline: 'Kyran Adams, Kira Tran, Parth Patel, RAY LC; Special Thanks to Connor Rothschild',
-    footer: 'Source: source citations, etc.',
     chapters: [
         {
             id: 'covid-in-prisons',
             title: 'COVID-19 in Prisons',
             image: './path/to/image/source.png',
-            description: 'There are over 86,000 inmates in the US with COVID-19 and 8 out of 10 of the top case clusters are in US prisons [1|http://www.ref.com].\n As the pandemic has spread to every corner of the United States, the US prison system has become an dire situation due to close proximity, slow response, low testing, and low cleanliness standards.',
+            description: 'There are over 86,000 inmates in the US with COVID-19 and 8 out of 10 of the top case clusters are in US prisons [1|http://www.ref.com].\n As the pandemic has spread to every corner of the United States, the US prison system has become an dire situation due to close proximity, slow response, low testing, and low cleanliness standards.\n Visualized here are federal jails in the US.',
             location: {
                 center: [-95.81199, 38.84726],
                 zoom: 3.78,

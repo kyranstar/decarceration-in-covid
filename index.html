@@ -8,6 +8,7 @@
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
     <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
     <script src="https://unpkg.com/scrollama"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <style>
         body {
             margin:0;
@@ -25,10 +26,11 @@
             z-index: -5;
         }
         #visualization {
-            z-index: -4;
+            z-index: -3;
             background-color: white;
             opacity: 0;
             transition: opacity .5s;
+            pointer-events: none;
         }
         #header {
             margin: 3vh auto;
@@ -46,9 +48,31 @@
             font-size: 13px;
         }
         #features {
-            padding-top: 10vh;
-            padding-bottom: 10vh;
-            z-index: 100;
+            top: 0;
+          height: 150px;
+          margin: 20px;
+          width: 250px;
+          z-index: -4;
+          transition: opacity .5s;
+        }
+        #features > div, #features > h2 {
+            padding-left: 15px;
+        }
+        /**
+        * Set rules for how the map overlays
+        * (information box and legend) will be displayed
+        * on the page. */
+        .map-overlay {
+          position: fixed;
+          bottom: 0;
+          right: 0;
+          background: rgba(255, 255, 255, 0.8);
+          margin-right: 20px;
+          font-family: Arial, sans-serif;
+          overflow: hidden;
+          border-radius: 3px;
+          opacity: 0;
+          transition: opacity .5s;
         }
         .centered {
             width: 50vw;
@@ -108,10 +132,12 @@
 
 <div id="map"></div>
 <div id="visualization"></div>
+<div class='map-overlay' id='features'><h2>Map Data</h2><div id='pd'><p></p></div></div>
 <div id="story"></div>
 <script src="./config.js"></script>
 <script src="./data.js"></script>
 <script>
+const ALL_STATE_LAYERS = ['cases-prison', 'hotels', 'cost-prisoner'];
 var layerTypes = {
     'fill': ['fill-opacity'],
     'line': ['line-opacity'],
@@ -137,6 +163,14 @@ function setLayerOpacity(layer) {
     paintProps.forEach(function(prop) {
         map.setPaintProperty(layer.layer, prop, layer.opacity);
     });
+    if(layer.opacity === 0) {
+        map.setLayoutProperty(layer.layer, "visibility", "none");
+    } else {
+        map.setLayoutProperty(layer.layer, "visibility", "visible");
+    }
+    if (ALL_STATE_LAYERS.includes(layer.layer)) {
+        document.getElementById('features').style.opacity = layer.opacity;
+    }
 }
 
 var story = document.getElementById('story');
@@ -327,6 +361,44 @@ function createStatesLayer(id, data, fips_col, data_col, invert, maxValue) {
     setLayerOpacity({'layer': id, 'opacity': 0})
 }
 
+function lookupDataByFips(fips, layer) {
+    var data = null;
+    var col = "";
+    if (layer === "cases-prison") {
+        data = cases_prison_data;
+        col = "CASES";
+    } else if (layer === "hotels") {
+        data = hotel_data;
+        col = "Unhoused Prisoners";
+    } else if (layer === "cost-prisoner") {
+        data = cost_prison_data;
+        col = "Cost";
+    }
+    for (datum of data) {
+        if (datum['FIPS'] === fips) {
+            return [datum[col], col];
+        }
+    }
+    return [null, null];
+}
+
+function handleMouseMove(e) {
+    var pt = [e.clientX, e.clientY]
+    var features = map.queryRenderedFeatures(pt, { layers: ALL_STATE_LAYERS });
+    if (features.length > 0) {
+        const layer = features[0].layer.id;
+
+        const fips = features[0].properties.STATE_ID;
+        const [val, colName] = lookupDataByFips(fips, layer);
+        if (val === null) {
+            return;
+        }
+        document.getElementById('pd').innerHTML = '<h3><strong>' +features[0].properties.STATE_NAME + '</strong></h3><p><strong><em>' + colName + ':</strong>' + val + '</em></p>';
+    } else {
+        document.getElementById('pd').innerHTML = '<p>Hover over a state!</p>';
+    }
+}
+
 map.on("load", function() {
     // setup the instance, pass callback functions
     scroller
@@ -369,6 +441,17 @@ map.on("load", function() {
     createStatesLayer('cases-prison', cases_prison_data, 'FIPS', 'CASES', true, null)
     createStatesLayer('hotels', hotel_data, 'FIPS', 'Unhoused Prisoners', true, 1)
     createStatesLayer('cost-prisoner', cost_prison_data, 'FIPS', 'Cost', true, null)
+
+
+    $('#story').on('mousemove', function(e) {
+        handleMouseMove(e)
+    });
+    $('#map').on('mousemove', function(e) {
+        handleMouseMove(e)
+    });
+    $('#features').on('mousemove', function(e) {
+        handleMouseMove(e)
+    });
 });
 
 // setup resize event
