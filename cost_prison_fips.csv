@@ -1,0 +1,47 @@
+Name,FIPS,Cost
+Alabama,01,14780
+Alaska,02,52633
+Arizona,04,25397
+Arkansas,05,20915
+California,06,64642
+Colorado,08,39303
+Connecticut,09,62159
+Delaware,10,39080
+Florida,12,19069
+Georgia,13,19977
+Hawaii,15,29425
+Idaho,16,22182
+Illinois,17,33507
+Indiana,18,18065
+Iowa,19,37908
+Kansas,20,24511
+Kentucky,21,16681
+Louisiana,22,16251
+Maryland,24,44601
+Massachusetts,25,55170
+Michigan,26,35809
+Minnesota,27,41366
+Missouri,29,22187
+Montana,30,33578
+Nevada,32,17851
+New Jersey,34,61603
+New Mexico,35,36832
+New York,36,69355
+North Carolina,37,30180
+North Dakota,38,38601
+Ohio,39,26509
+Oklahoma,40,16497
+Oregon,41,44021
+Pennsylvania,42,42727
+Rhode Island,44,58564
+South Carolina,45,20053
+South Dakota,46,20748
+Tennessee,47,23468
+Texas,48,22012
+Utah,49,22119
+Vermont,50,57615
+Virginia,51,21299
+Washington,53,37841
+West Virginia,54,27458
+Wisconsin,55,38644
+TOTAL (45 states),,33274

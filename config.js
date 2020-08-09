@@ -1,5 +1,5 @@
 var config = {
-    style: 'mapbox://styles/mapbox/satellite-streets-v11',
+    style: 'mapbox://styles/recfreq/ckdmmdb771fmm1jmvpv0dtkn0',
     accessToken: 'pk.eyJ1IjoicmVjZnJlcSIsImEiOiJjamtoNXhvZTEwM3NwM3ZxcWszYTN3ZWl4In0.PVWzx-AiSNlZEYR1YZPrVw',
     showMarkers: false,
     theme: 'light',
@@ -21,20 +21,20 @@ var config = {
                 bearing: 0.00
             },
             onChapterEnter: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 1
-                // }
+                 {
+                     layer: 'usfederalprisons-avxt9b',
+                     opacity: 1
+                 }
             ],
             onChapterExit: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 0
-                // }
+                 {
+                     layer: 'usfederalprisons-avxt9b',
+                     opacity: 0
+                 }
             ]
         },
         {
-            id: 'covid-in-prisons',
+            id: 'covid-in-prisons2',
             title: 'COVID-19 in Prisons',
             description: 'Visualized here is the number of cases per 10,000 prisoners by state. [2|https://www.themarshallproject.org/2020/05/01/a-state-by-state-look-at-coronavirus-in-prisons]',
             location: {
@@ -44,16 +44,16 @@ var config = {
                 bearing: 0.00
             },
             onChapterEnter: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 1
-                // }
+                 {
+                     layer: 'cases-prison',
+                     opacity: 1
+                 }
             ],
             onChapterExit: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 0
-                // }
+                 {
+                     layer: 'cases-prison',
+                     opacity: 0
+                 }
             ]
         },
         {
@@ -82,7 +82,7 @@ var config = {
         {
             id: 'issues-with-reintegration',
             title: 'Issues with Reintegration in COVID',
-            description: 'Current reintegration plans have found difficulty in many areas. For example, many prisons and reintegration non-profits report difficulty finding housing for the increasing demand [5|https://shelterforce.org/2020/05/11/pandemic-leads-to-early-prisoner-release-but-finding-housing-for-them-remains-difficult/].\n As well as that, an unprecedented unemployment rate makes finding jobs for decarcerated people difficult.',
+            description: 'Many prisons and reintegration non-profits report difficulty finding housing for the increasing demand [5|https://shelterforce.org/2020/05/11/pandemic-leads-to-early-prisoner-release-but-finding-housing-for-them-remains-difficult/].\n As well as that, an unprecedented unemployment rate makes finding jobs for decarcerated people difficult.',
             location: {
                 center: [-95.81199, 38.84726],
                 zoom: 3.78,
@@ -151,7 +151,7 @@ var config = {
         {
             id: 'our-plan-housing-viz',
             title: 'Decarceration During COVID: Housing in Hotels Visualized',
-            description: 'How many hotels are available to house inmates?',
+            description: 'How many hotels are available to house inmates? This visualization shows the percentage of all prisoners (not just that are homeless and low-risk) that could not be housed in hotels even assuming a 70% occupancy rate, which is almost 30% higher than the current rate.',
             location: {
                 center: [-95.81199, 38.84726],
                 zoom: 3.78,
@@ -159,16 +159,16 @@ var config = {
                 bearing: 0.00
             },
             onChapterEnter: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 1
-                // }
+                 {
+                     layer: 'hotels',
+                     opacity: 1
+                 }
             ],
             onChapterExit: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 0
-                // }
+                 {
+                     layer: 'hotels',
+                     opacity: 0
+                 }
             ]
         },
         {
@@ -205,16 +205,16 @@ var config = {
                 bearing: 0.00
             },
             onChapterEnter: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 1
-                // }
+                 {
+                     layer: 'cost-prisoner',
+                     opacity: 1
+                 }
             ],
             onChapterExit: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 0
-                // }
+                 {
+                     layer: 'cost-prisoner',
+                     opacity: 0
+                 }
             ]
         },
         {

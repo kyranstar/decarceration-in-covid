@@ -110,6 +110,7 @@
 <div id="visualization"></div>
 <div id="story"></div>
 <script src="./config.js"></script>
+<script src="./data.js"></script>
 <script>
 var layerTypes = {
     'fill': ['fill-opacity'],
@@ -274,6 +275,58 @@ if (config.showMarkers) {
 // instantiate the scrollama
 var scroller = scrollama();
 
+function perc2color(perc) {
+	var r, g, b = 0;
+	if(perc < 50) {
+		r = 255;
+		g = Math.round(5.1 * perc);
+	}
+	else {
+		g = 255;
+		r = Math.round(510 - 5.10 * perc);
+	}
+	return 'rgba(' + r + ', ' + g + ', ' + b + ', 1)';
+}
+
+function createStatesLayer(id, data, fips_col, data_col, invert, maxValue) {
+    // CREATE MAP LAYERS
+    var expression = ['match', ['get', 'STATE_ID']];
+    if (!maxValue) {
+        maxValue = 0;
+        data.forEach(function(row) {
+            maxValue = Math.max(maxValue, row[data_col])
+        });
+    }
+
+    // Calculate color for each state based on the unemployment rate
+    data.forEach(function(row) {
+        var val = (parseFloat(row[data_col]) / maxValue) * 100;
+        if (invert) {
+            val = 100 - val;
+        }
+        var color = perc2color(val)
+        expression.push(row[fips_col], color);
+    });
+
+    // Last value is the default, used where there is no data
+    expression.push('rgba(0,0,0,0)');
+
+    // Add layer from the vector tile source with data-driven style
+    map.addLayer(
+        {
+            'id': id,
+            'type': 'fill',
+            'source': 'states',
+            'source-layer': 'states',
+            'paint': {
+                'fill-color': expression
+            }
+        },
+        'usfederalprisons-avxt9b'
+    );
+    setLayerOpacity({'layer': id, 'opacity': 0})
+}
+
 map.on("load", function() {
     // setup the instance, pass callback functions
     scroller
@@ -289,6 +342,7 @@ map.on("load", function() {
         if (config.showMarkers) {
             marker.setLngLat(chapter.location.center);
         }
+
         if (chapter.onChapterEnter.length > 0) {
             chapter.onChapterEnter.forEach(setLayerOpacity);
         }
@@ -305,6 +359,16 @@ map.on("load", function() {
             chapter.onChapterExit.forEach(setLayerOpacity);
         }
     });
+    // Add source for state polygons hosted on Mapbox, based on US Census Data:
+    // https://www.census.gov/geo/maps-data/data/cbf/cbf_state.html
+    map.addSource('states', {
+        type: 'vector',
+        url: 'mapbox://mapbox.us_census_states_2015'
+    });
+
+    createStatesLayer('cases-prison', cases_prison_data, 'FIPS', 'CASES', true, null)
+    createStatesLayer('hotels', hotel_data, 'FIPS', 'Unhoused Prisoners', true, 1)
+    createStatesLayer('cost-prisoner', cost_prison_data, 'FIPS', 'Cost', true, null)
 });
 
 // setup resize event
