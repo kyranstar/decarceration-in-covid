@@ -17,12 +17,18 @@
         a, a:hover, a:visited {
             color: #0071bc;
         }
-        #map {
+        #map, #visualization {
             top:0;
             height: 100vh;
             width:100vw;
             position: fixed;
             z-index: -5;
+        }
+        #visualization {
+            z-index: -4;
+            background-color: white;
+            opacity: 0;
+            transition: opacity .5s;
         }
         #header {
             margin: 3vh auto;
@@ -101,6 +107,7 @@
 <body>
 
 <div id="map"></div>
+<div id="visualization"></div>
 <div id="story"></div>
 <script src="./config.js"></script>
 <script>
@@ -206,7 +213,6 @@ config.chapters.forEach((record, idx) => {
             }
             // Add text after reference
             var postText = document.createTextNode(line.substring(ptr, line.length));
-            console.log("postText", line.substring(ptr, line.length))
             story.appendChild(postText);
             chapter.appendChild(story);
         }
@@ -285,6 +291,11 @@ map.on("load", function() {
         }
         if (chapter.onChapterEnter.length > 0) {
             chapter.onChapterEnter.forEach(setLayerOpacity);
+        }
+        if (chapter.is_graph) {
+            document.getElementById('visualization').style.opacity = 1;
+        } else {
+            document.getElementById('visualization').style.opacity = 0;
         }
     })
     .onStepExit(response => {

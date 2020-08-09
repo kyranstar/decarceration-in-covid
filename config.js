@@ -4,7 +4,7 @@ var config = {
     showMarkers: false,
     theme: 'light',
     alignment: 'left',
-    title: 'Decarceration during COVID - A Novel Prisoner Reintegration Plan',
+    title: 'Decarceration During COVID - A Novel Prisoner Reintegration Plan',
     subtitle: 'A Project for HackZ',
     byline: 'Kyran Adams, Kira Tran, Parth Patel, RAY LC; Special Thanks to Connor Rothschild',
     footer: 'Source: source citations, etc.',
@@ -218,32 +218,10 @@ var config = {
             ]
         },
         {
-            id: 'our-plan-jobs2',
-            title: 'How Much Does a Single Prisoner Cost?',
-            description: 'This visualization shows the average annual cost of keeping a person imprisoned (discounting novel costs in the pandemic such as testing and healthcare).',
-            location: {
-                center: [-95.81199, 38.84726],
-                zoom: 3.78,
-                pitch: 25.00,
-                bearing: 0.00
-            },
-            onChapterEnter: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 1
-                // }
-            ],
-            onChapterExit: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 0
-                // }
-            ]
-        },
-        {
             id: 'our-plan-jobs4',
             title: 'How many jobs are available in different industries?',
             description: 'This visualization shows how many jobs are available in different industries hardest hit by the pandemic.',
+            is_graph: true,
             location: {
                 center: [-95.81199, 38.84726],
                 zoom: 3.78,
@@ -267,6 +245,7 @@ var config = {
             id: 'finance-breakdown',
             title: 'Finance Breakdown',
             description: 'How do savings by prisons compare with the cost to house and employee decarcerated people?',
+            is_graph: true,
             location: {
                 center: [-95.81199, 38.84726],
                 zoom: 3.78,
