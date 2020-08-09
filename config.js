@@ -66,16 +66,16 @@ var config = {
                 bearing: 0.00
             },
             onChapterEnter: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 1
-                // }
+                 {
+                     layer: 'usfederalprisons-avxt9b',
+                     opacity: 1
+                 }
             ],
             onChapterExit: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 0
-                // }
+                 {
+                     layer: 'usfederalprisons-avxt9b',
+                     opacity: 0
+                 }
             ]
         },
         {
@@ -89,16 +89,16 @@ var config = {
                 bearing: 0.00
             },
             onChapterEnter: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 1
-                // }
+                 {
+                     layer: 'usfederalprisons-avxt9b',
+                     opacity: 1
+                 }
             ],
             onChapterExit: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 0
-                // }
+                 {
+                     layer: 'usfederalprisons-avxt9b',
+                     opacity: 0
+                 }
             ]
         },
         {
@@ -112,16 +112,16 @@ var config = {
                 bearing: 0.00
             },
             onChapterEnter: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 1
-                // }
+                 {
+                     layer: 'usfederalprisons-avxt9b',
+                     opacity: 1
+                 }
             ],
             onChapterExit: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 0
-                // }
+                 {
+                     layer: 'usfederalprisons-avxt9b',
+                     opacity: 0
+                 }
             ]
         },
         {
@@ -135,16 +135,16 @@ var config = {
                 bearing: 0.00
             },
             onChapterEnter: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 1
-                // }
+                 {
+                     layer: 'usfederalprisons-avxt9b',
+                     opacity: 1
+                 }
             ],
             onChapterExit: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 0
-                // }
+                 {
+                     layer: 'usfederalprisons-avxt9b',
+                     opacity: 0
+                 }
             ]
         },
         {
@@ -181,16 +181,16 @@ var config = {
                 bearing: 0.00
             },
             onChapterEnter: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 1
-                // }
+                 {
+                     layer: 'usfederalprisons-avxt9b',
+                     opacity: 1
+                 }
             ],
             onChapterExit: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 0
-                // }
+                 {
+                     layer: 'usfederalprisons-avxt9b',
+                     opacity: 0
+                 }
             ]
         },
         {
@@ -217,34 +217,9 @@ var config = {
             ]
         },
         {
-            id: 'our-plan-jobs4',
-            title: 'How many jobs are available in different industries?',
-            description: 'This visualization shows how many jobs are available in different industries hardest hit by the pandemic.',
-            is_graph: true,
-            location: {
-                center: [-95.81199, 38.84726],
-                zoom: 3.78,
-                pitch: 25.00,
-                bearing: 0.00
-            },
-            onChapterEnter: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 1
-                // }
-            ],
-            onChapterExit: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 0
-                // }
-            ]
-        },
-        {
             id: 'finance-breakdown',
             title: 'Finance Breakdown',
-            description: 'How do savings by prisons compare with the cost to house and employee decarcerated people?',
-            is_graph: true,
+            description: 'How do savings by prisons compare with the cost to house and employee decarcerated people for a year?\n To calculate this, we estimate hotel costs with a 50% hotel employee wage boost, add the cost of paying decarcerated people minimum wage for a year, and subtract the average inmate cost.\n In many states, such as California, prisons actually make a large amount of money by implementing our plan.',
             location: {
                 center: [-95.81199, 38.84726],
                 zoom: 3.78,
@@ -252,16 +227,16 @@ var config = {
                 bearing: 0.00
             },
             onChapterEnter: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 1
-                // }
+                 {
+                     layer: 'finance',
+                     opacity: 1
+                 }
             ],
             onChapterExit: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 0
-                // }
+                 {
+                     layer: 'finance',
+                     opacity: 0
+                 }
             ]
         },
         {
@@ -275,16 +250,16 @@ var config = {
                 bearing: 0.00
             },
             onChapterEnter: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 1
-                // }
+                 {
+                     layer: 'usfederalprisons-avxt9b',
+                     opacity: 1
+                 }
             ],
             onChapterExit: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 0
-                // }
+                 {
+                     layer: 'usfederalprisons-avxt9b',
+                     opacity: 0
+                 }
             ]
         }
     ]
