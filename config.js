@@ -4,16 +4,16 @@ var config = {
     showMarkers: false,
     theme: 'light',
     alignment: 'left',
-    title: 'Deincarceration during COVID',
+    title: 'Decarceration During COVID - a Novel Prisoner Reintegration Plan',
     subtitle: '',
-    byline: 'for HackZ',
+    byline: 'A Project for HackZ (Kyran Adams, Kira Tran, Parth Patel, RAY LC; Special Thanks to Connor Rothschild)',
     footer: 'Source: source citations, etc.',
     chapters: [
         {
             id: 'slug-style-id',
-            title: 'COVID in prisons',
+            title: 'COVID-19 in prisons',
             image: './path/to/image/source.png',
-            description: 'There are over 86,000 inmates in the US with COVID.',
+            description: 'There are over 86,000 inmates in the US with COVID-19 and 8 out of 10 of the top case clusters are in US prisons [1|http://www.ref.com].\n As the pandemic has spread to every corner of the United States, the US prison system has become an dire situation due to close proximity, slow response, low testing, and low cleanliness standards.',
             location: {
                 center: [-95.81199, 38.84726],
                 zoom: 3.78,

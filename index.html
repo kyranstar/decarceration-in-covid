@@ -10,15 +10,15 @@
     <script src="https://unpkg.com/scrollama"></script>
     <style>
         body {
-            margin:0; 
-            padding:0; 
+            margin:0;
+            padding:0;
             font-family: sans-serif;
         }
         a, a:hover, a:visited {
             color: #0071bc;
         }
         #map {
-            top:0; 
+            top:0;
             height: 100vh;
             width:100vw;
             position: fixed;
@@ -91,7 +91,7 @@
         }
 
         /* Fix issue on mobile browser where scroll breaks  */
-        .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan, 
+        .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan,
         .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan .mapboxgl-canvas {
             touch-action: unset;
         }
@@ -165,23 +165,51 @@ if (header.innerText.length > 0) {
 config.chapters.forEach((record, idx) => {
     var container = document.createElement('div');
     var chapter = document.createElement('div');
-    
+
     if (record.title) {
         var title = document.createElement('h3');
         title.innerText = record.title;
         chapter.appendChild(title);
     }
-    
+
     if (record.image) {
-        var image = new Image();  
-        image.src = record.image;  
+        var image = new Image();
+        image.src = record.image;
         chapter.appendChild(image);
     }
-    
+
     if (record.description) {
-        var story = document.createElement('p');
-        story.innerHTML = record.description;
-        chapter.appendChild(story);
+        // Split on newlines to create paragraph elements
+        var descriptionLines = record.description.split("\n");
+        for (line of descriptionLines) {
+            var story = document.createElement('p');
+            var ptr = 0;
+            // Find all references
+            var re = /\[.*?\]/g;
+            while ((match = re.exec(line)) != null) {
+                // Add text before the reference
+                var preText = document.createTextNode(line.substring(ptr, match.index));
+                story.appendChild(preText);
+                // Create link for reference
+                var referenceText = match[0];
+                ptr += preText.length + referenceText.length;
+                var referenceParts = referenceText.substring(1, referenceText.length-1).split("|");
+                var a = document.createElement('a');
+                a.innerHTML = "[" + referenceParts[0] + "]";
+                a.href = referenceParts[1];
+                // Make reference superscript
+                var sup = document.createElement('sup');
+                sup.appendChild(a)
+
+                story.appendChild(sup);
+
+            }
+            // Add text after reference
+            var postText = document.createTextNode(line.substring(ptr, line.length));
+            console.log("postText", line.substring(ptr, line.length))
+            story.appendChild(postText);
+            chapter.appendChild(story);
+        }
     }
 
     container.setAttribute('id', record.id);
@@ -214,11 +242,11 @@ if (footer.innerText.length > 0) {
 mapboxgl.accessToken = config.accessToken;
 
 const transformRequest = (url) => {
-    const hasQuery = url.indexOf("?") !== -1;	  
-    const suffix = hasQuery ? "&pluginName=journalismScrollytelling" : "?pluginName=journalismScrollytelling";	  
+    const hasQuery = url.indexOf("?") !== -1;
+    const suffix = hasQuery ? "&pluginName=journalismScrollytelling" : "?pluginName=journalismScrollytelling";
     return {
       url: url + suffix
-    }	  
+    }
 }
 
 var map = new mapboxgl.Map({
